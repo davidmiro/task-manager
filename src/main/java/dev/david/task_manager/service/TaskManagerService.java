@@ -12,8 +12,6 @@ public class TaskManagerService {
     public TaskManagerService(TaskManagerRepository taskManagerRepository) {
         this.taskManagerRepository = taskManagerRepository;
     }
-    public void saveTask(Task task) {
-        taskManagerRepository.save(task);
-    }
+
 
 }
