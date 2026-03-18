@@ -37,11 +37,11 @@ public class TaskManagerController {
                 .body(savedTask);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task) {
-        taskManagerService.updateById(id, task);
-        return ResponseEntity.ok(task);
+        return ResponseEntity.ok(taskManagerService.updateById(id, task));
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
         taskManagerService.deleteTaskById(id);
