@@ -4,7 +4,6 @@ import dev.david.task_manager.enums.TaskPriority;
 import dev.david.task_manager.enums.TaskStatus;
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.time.LocalDateTime;
 
 @Entity
