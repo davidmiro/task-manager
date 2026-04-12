@@ -1,6 +1,8 @@
 package dev.david.task_manager.controller;
 
-import dev.david.task_manager.entity.Task;
+import dev.david.task_manager.dto.TaskCreateDTO;
+import dev.david.task_manager.dto.TaskResponseDTO;
+import dev.david.task_manager.dto.TaskUpdateDTO;
 import dev.david.task_manager.service.TaskManagerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,28 +20,27 @@ public class TaskManagerController {
     }
 
     @GetMapping("/")
-    public List<Task> getTasks() {
+    public List<TaskResponseDTO> getTasks() {
         return taskManagerService.getAllTasks();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
-        Task task = taskManagerService.getTaskById(id);
-        return ResponseEntity.ok(task);
+    public ResponseEntity<TaskResponseDTO> getTaskById(@PathVariable Long id) {
+        return ResponseEntity.ok(taskManagerService.getTaskById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Task> createTask(@RequestBody Task task) {
-        Task savedTask = taskManagerService.createTask(task);
+    public ResponseEntity<TaskResponseDTO> createTask(@RequestBody TaskCreateDTO taskDto) {
+        TaskResponseDTO savedTask = taskManagerService.createTask(taskDto);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(savedTask);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task) {
-        return ResponseEntity.ok(taskManagerService.updateById(id, task));
+    @PatchMapping("/{id}")
+    public ResponseEntity<TaskResponseDTO> updateTask(@PathVariable Long id, @RequestBody TaskUpdateDTO taskDto) {
+        return ResponseEntity.ok(taskManagerService.updateById(id, taskDto));
     }
 
     @DeleteMapping("/{id}")
@@ -47,7 +48,7 @@ public class TaskManagerController {
         taskManagerService.deleteTaskById(id);
 
         return ResponseEntity
-                .status(HttpStatus.NO_CONTENT)
+                .noContent()
                 .build();
     }
 }
