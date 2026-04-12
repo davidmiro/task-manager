@@ -7,7 +7,6 @@ import dev.david.task_manager.entity.Task;
 import dev.david.task_manager.enums.TaskStatus;
 import dev.david.task_manager.mapper.TaskMapper;
 import dev.david.task_manager.repository.TaskManagerRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
